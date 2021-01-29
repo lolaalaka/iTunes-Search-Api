@@ -6,6 +6,24 @@ const videosContainer = document.querySelector('.videos');
 const tracksContainer = document.querySelector('.tracks');
 const mediaPlayer = document.querySelector('.media-play');
 const loader = document.getElementById('loading');
+let bodyContainer = document.querySelector('.container');
+
+let matchResult = window.matchMedia("(min-width: 1024px)");
+
+   function isSmallScreen(matchResult){
+       if(matchResult.matches){
+               bodyContainer.style.display.visibility = "visible";
+        } else {
+                bodyContainer.style.display.visibility = "hidden";
+                let bodymessage = `
+                  <div class= "mobile-view"> Please view on a pc or mac :)</div>
+                `
+                  bodyContainer.innerHTML = bodymessage;
+        } 
+    }
+window.addEventListener('resize', isSmallScreen(matchResult));
+
+
 
 
 videosContainer.style.opacity = 0;
@@ -55,9 +73,7 @@ const getContent = (search) =>{
                     
                     `
                     videoCards.innerHTML += contentHTML;        
-                }
-                
-                 if(kind === "song"){
+                }else if(kind === "song"){
                     let contentHTML = `
                     <div class ="songcards" onclick="playMusic('${result.previewUrl}', '${result.artworkUrl100}', '${result.trackName}', '${result.artistName}')">
                     <div class="song-art" style ="background-image: url(${result.artworkUrl100})"></div> 
@@ -112,4 +128,8 @@ searchInput.addEventListener('keydown', (event)=>{
     } 
 
 })
+
+
+
+
 
