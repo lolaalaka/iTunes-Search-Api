@@ -21,8 +21,9 @@ let matchResult = window.matchMedia("(min-width: 1024px)");
                   bodyContainer.innerHTML = bodymessage;
         } 
     }
-window.addEventListener('resize', isSmallScreen(matchResult));
+isSmallScreen(matchResult);
 
+window.addEventListener('resize', ()=>isSmallScreen(matchResult));
 
 
 
